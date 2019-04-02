@@ -1,12 +1,11 @@
-'use strict'
+'use strict';
 
 module.exports = app => {
-    const { router, controller, middleware } = app
-    const apiV1Router = router.namespace('/api')
+    const { router, controller, middleware } = app;
+    const { admin, house } = controller.api;
+    const pagination = middleware.pagination();
 
-    const { house } = controller.api
-    const pagination = middleware.pagination()
-
-    apiV1Router.get('/houses', pagination, house.index)
-    apiV1Router.get('/house/:id', house.show)
-}
+    router.post('/api/admin/User/login', admin.login);
+    router.get('/houses', pagination, house.index);
+    router.get('/house/:id', house.show);
+};
