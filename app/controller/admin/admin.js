@@ -1,4 +1,4 @@
-const BaseController = require('./base');
+const BaseController = require('../api/base');
 
 class AdminController extends BaseController {
     async login() {

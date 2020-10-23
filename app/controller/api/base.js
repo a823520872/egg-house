@@ -2,12 +2,12 @@ const Controller = require('egg').Controller;
 
 class BaseController extends Controller {
     getResponse(res) {
-        console.log(res);
-        console.log(res instanceof Error);
+        let requestFail = res instanceof Error
+        // res.message
         return {
-            code: res instanceof Error ? 0 : 1,
-            data: res instanceof Error ? res.errors : res,
-            msg: res.message || '请求成功'
+            code: requestFail ? 0 : 1,
+            data: requestFail ? res.errors : res,
+            msg: requestFail ? '请求失败' : '请求成功'
         };
     }
 }
